@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/cc9e69ed66.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <title>Bouncing Ball Project</title>
+</head>
+<body>
+    <h1>B<i class="fa-solid fa-circle-notch yellow"></i>uncing Ball Pr<i class="fa-solid fa-circle-notch blue"></i>ject</h1>
+    <canvas></canvas>
+    <p class="credit">Check out the original creator of this project: <strong>PothOnProgramming</strong> <a href="https://www.youtube.com/watch?v=hoWjnidQOms">here</a>.</p>
+    <p class="introduction">This Project is primarily composed of Javascript. Each section of code will be broken down below.</p>
+
+    <section id="section-wrapper">
+        <div class="html-container">
+            <h3 class="subsection">HTML</h3>
+            <p class="summary">All you will need in your html document is the boilerplate code and an empty <code class="snippet">&#x3C;canvas&#x3E;</code> semantic tag.</p>
+            <p class="summary">The <strong>canvas</strong> element creates a fixed-size drawing surface that exposes one or more rendering contexts, which are used to create and manipulate the content shown.</p>
+            <p class="summary">It is primarily used for creating animations.</p>
+        </div>
+
+        <div class="css-container">
+            <h3 class="subsection">CSS</h3>
+            <p class="summary">CSS is just as simple, all that is really required is<br><code class="snippet">canvas {width: 100%; height: 100%;}</code></p>
+        </div>
+    </section>
+    
+    <section id="js-container">
+        <h3 class="subsection">Javascript</h3>
+        <p class="summary">First thing's first, start by creating an <i>Object Constructor</i> which will specify each ball's properties.</p>
+
+
+        <pre><code class="language-javascript">
+const Ball = function(x, y, radius) {
+    this.x = x;
+    this.y = y;
+    this.radius = radius;
+    this.direction = Math.random() * Math.PI * 2;
+    this.speed = Math.random() * 3 + 1;
+    this.color = "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + (Math.random() + .2) + ")";
+}
+        </code></pre>
+        <p class="summary">This function will accept three arguements: <strong>x, y</strong> and <strong>radius</strong>.</p>
+        <p class="summary">All of the variables are specified by using the <strong>this</strong> keyword which refers back to its parent object.</p>
+        <ul class="summary-list">
+            <li><strong>this.x</strong> defines the cartesian, x-coordinate <i class="fa-solid fa-left-right"></i> of the ball</li>
+            <li><strong>this.y</strong> defines the cartesian, y-coordinate <i class="fa-solid fa-up-down"></i> of the ball</li>
+            <li><strong>this.radius</strong> defines the size of each ball</li>
+            <li><strong>this.direction</strong> defines the direction in which the ball will "point" on initialization</li>
+            <li><strong>this.speed</strong> defines the speed of each ball</li>
+            <li><strong>this.color</strong> determines the color of each ball</li>
+        </ul>
+
+
+        <pre><code class="language-javascript">
+Ball.prototype = {
+    updatePosition:function(width, height) {
+        this.x += Math.cos(this.direction) * this.speed;
+        this.y += Math.sin(this.direction) * this.speed;
+
+        //x-axis collision code
+        if (this.x - this.radius &#x3C; 0) {
+            this.x = this.radius;
+            this.direction = Math.atan2(Math.sin(this.direction), Math.cos(this.direction) * -1);
+        } else if (this.x + this.radius > width) {
+            this.x = width - this.radius;
+            this.direction = Math.atan2(Math.sin(this.direction), Math.cos(this.direction) * -1);
+        }
+
+        //y-axis collision code
+        if (this.y - this.radius &#x3C; 0) {
+            this.y = this.radius;
+            this.direction = Math.atan2(Math.sin(this.direction) * -1, Math.cos(this.direction));
+        } else if (this.y + this.radius > height) {
+            this.y = height - this.radius;
+            this.direction = Math.atan2(Math.sin(this.direction) * -1, Math.cos(this.direction));
+        }
+    }
+}
+        </code></pre>
+        <p class="summary">The next step is to create a prototype which will allow you to add new properties and methods to your object constructor.</p>
+        <p class="summary">Within this prototype, we will insert a method called <strong>updatePosition</strong> which will accept arguements for a <strong>width</strong> and <strong>height</strong>.</p>
+        <p class="summary">Inferring from the label of this method, you may have already been able to guess that these arguments will be used update the position of each ball in accordance with the width and height constraints of their container.</p>
+        <ul class="summary-list">
+            <li><strong>this.x</strong> means that the ball's x-coordinate becomes equal to the sum of itself plus Math<strong>.cos</strong>(ball direction) * ball speed.</li>
+            <li><strong>this.y</strong> means that the ball's y-coordinate becomes equal to the sum of itself plus Math<strong>.sin</strong>(ball direction) * ball speed.</li>
+        </ul>
+        <p class="summary">The updatePosition method will also contain the logic necessary to create the 'bouncing' effect that's seen when a ball hits the side of the canvas container.</p>
+        <ul class="summary-list">
+            <li class="li-heading"><strong>x-axis collision code</strong></li>
+            <li>The first if-statement handles <strong>left-side container collisions</strong> by stating <u>If the x-coordinate of the ball subtracted by its radius is <i>less than</i> 0</u>: reset the ball's x-position to be the distance of its radius from the container and <i>invert</i> its x direction.</li>
+            <li>The following else-statement handles <strong>right-side container collisions</strong> by stating <u>If the sum of the ball's x-coordinate and its radius is <i>greater than</i> the container's width</u>: reset the ball's x-position to be the width of the container minus the ball's radius and <i>invert</i> its x direction.</li>
+            <li class="li-heading"><strong>y-axis collision code</strong></li>
+            <li>The y-axis collision code uses the same logic as the x-axis; you're just handling top and bottom collisions by adjusting the ball's y-coordinates.</li>
+        </ul>
+
+
+        <pre><code class="language-javascript">
+let x = document.documentElement.clientWidth * 0.5;
+let y = document.documentElement.clientHeight * 0.5;
+
+var balls = new Array();
+for(let index = 0; index &#x3C; 30; index++) {
+    balls.push(new Ball(x, y, Math.random() * 35 + 15));
+}
+        </code></pre>
+        <p class="summary">Here, the first two variables are setting the initial x and y coordinates of the ball object to originate at the center of the container.</p>
+        <p class="summary">The third variable, <i>balls</i>, contains an array that will allow us to specify <u>how many</u> balls and at <u>what size</u> to add into the container by using a for-loop.</p>
+        <ul class="summary-list">
+            <li>Each <strong>new Ball</strong> object will be <strong>.pushed</strong> into the array with a standard x and y coordinate but their radius will be a random size between ~ and ~ .</li>
+        </ul>
+
+
+        <pre><code class="language-javascript">
+let context = document.querySelector("canvas").getContext("2d");
+function loop() {
+    window.requestAnimationFrame(loop);
+        
+    let width = document.documentElement.clientWidth;
+    let height = document.documentElement.clientHeight;
+        
+    context.canvas.width = width;
+    context.canvas.height = height;
+        
+    for(let index = 0; index &#x3C; balls.length; index++) {
+        let ball = balls[index];
+            context.fillStyle = ball.color;
+            context.beginPath();
+            context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+            context.fill();
+        ball.updatePosition(width, height);
+    }
+}
+        </code></pre>
+        <p class="summary">The <code class="snippet">&#x3C;canvas&#x3E;</code> element has a method called <strong>getContext()</strong>, used to obtain the rendering context and its drawing functions. getContext() takes one parameter, the type of context, and in this case that is '2d'.</p>
+        <ul class="summary-list">
+            <li class="li-heading"><strong>Loop function</strong></li>
+            <li>In order for your canvas to refresh, you must create a loop which will constantly update the objects' positions.</li>
+            <li>Width and Height specify the clientside viewport size and set that ratio to the canvas for proportional rendering.</li>
+            <li>The bottom for-loop iterates through the aforementioned balls array and applies final styling, positioning and information and they are then populated within the canvas</li>
+        </ul>
+
+
+        <pre><code class="language-javascript">
+loop();
+        </code></pre>
+        <p class="summary">loop() is the final piece to the project. It initiates the entire animation upon loading!</p>
+    </section>
+</body>
+<script src="main.js" defer></script>
+</html>
