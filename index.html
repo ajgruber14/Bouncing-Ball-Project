@@ -14,14 +14,13 @@
 <body>
     <h1>B<i class="fa-solid fa-circle-notch yellow"></i>uncing Ball Pr<i class="fa-solid fa-circle-notch blue"></i>ject</h1>
     <canvas></canvas>
+    <p class="credit">Adaptation by <strong>ajgruber14</strong> <u class="credit-highlight">Check out more of my breakdown projects on GitHub</u> <a href="https://www.github.com/ajgruber14" target="_blank" rel="noreferrer noopener">here</a></p>
     <p class="credit">Check out the original creator of this project: <strong>PothOnProgramming</strong> <a href="https://www.youtube.com/watch?v=hoWjnidQOms" target="_blank" rel="noreferrer noopener">here</a></p>
-    <p class="credit">Adaptation by: <strong>ajgruber14</strong> <u class="credit-highlight">Check out more of my breakdown projects on GitHub</u> <a href="https://www.github.com/ajgruber14" target="_blank" rel="noreferrer noopener">here</a></p>
     <section class="introduction">
         <p class="summary">
             The animation above was originally created by Youtuber <strong>PothOnProgramming</strong> and some of the styling (<i>ball radius, opacity and quantity rendered along with window sizing and background color</i>) has been 
             adjusted to fit into a more visually appealing and presentational form.
         </p>
-        <p class="summary">The code breakdown below is my interpretation of the logic present 'behind the scenes' of the animation. My intended design and layout style was to emulate a modern blog post tutorial.</p>
         <p class="note">
             <strong>note:</strong> Keep in mind that some of the information and terms used in the breakdown below may contain inaccuracies as this is just a novice attempt at understanding js syntax. If you notice any errors 
             or would like to provide further clarification, feel free to reach out and/or correct me!
@@ -58,7 +57,7 @@ const Ball = function(x, y, radius) {
     this.color = "rgba(" + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + Math.floor(Math.random() * 256) + "," + (Math.random() + .2) + ")";
 }
         </code></pre>
-        <p class="summary">This function will accept three arguements: <strong>x, y</strong> and <strong>radius</strong>.</p>
+        <p class="summary">This function will accept three arguments: <strong>x, y</strong> and <strong>radius</strong>.</p>
         <p class="summary">All of the variables are specified by using the <strong>this</strong> keyword which refers back to its parent object.</p>
         <ul class="summary-list">
             <li><strong>this.x</strong> defines the cartesian, x-coordinate <i class="fa-solid fa-left-right"></i> of the ball</li>
@@ -97,8 +96,8 @@ Ball.prototype = {
 }
         </code></pre>
         <p class="summary">The next step is to create a prototype which will allow you to add new properties and methods to your object constructor.</p>
-        <p class="summary">Within this prototype, we will insert a method called <strong>updatePosition</strong> which will accept arguements for a <strong>width</strong> and <strong>height</strong>.</p>
-        <p class="summary">Inferring from the label of this method, you may have already been able to guess that these arguments will be used update the position of each ball in accordance with the width and height constraints of their container.</p>
+        <p class="summary">Within this prototype, we will insert a method called <strong>updatePosition</strong> which will accept arguments for a <strong>width</strong> and <strong>height</strong>.</p>
+        <p class="summary">Inferring from the label of this method, you may have already been able to guess that these arguments will be used to update the position of each ball in accordance with the width and height constraints of their container.</p>
         <ul class="summary-list">
             <li><strong>this.x</strong> means that the ball's x-coordinate becomes equal to the sum of itself plus Math<strong>.cos</strong>(ball direction) * ball speed.</li>
             <li><strong>this.y</strong> means that the ball's y-coordinate becomes equal to the sum of itself plus Math<strong>.sin</strong>(ball direction) * ball speed.</li>
@@ -164,6 +163,6 @@ loop();
         </code></pre>
         <p class="summary">loop() is the final piece to the project. It initiates the entire animation upon loading!</p>
     </section>
+    <script src="main.js" defer></script>
 </body>
-<script src="main.js" defer></script>
 </html>
