@@ -1,7 +1,34 @@
 :root {
-    --dark-gray:    rgb(50, 50, 50);
-    --yellow:       rgb(255, 215, 0);
-    --blue:         rgb(0, 165, 255);
+    /* LIGHT THEME */
+    --LT-header-gray:                  rgb(50, 50, 50);
+    --LT-header-drop-shadow:           rgba(119, 119, 119, 0.716);
+    --LT-credit-note-gray:             rgb(68, 68, 68);
+    --LT-link-color:                   rgb(0, 122, 183);
+    --LT-intro-border-gray:            rgb(210, 210, 210);
+    --LT-review-section-container1:    rgb(250, 250, 250);
+    --LT-review-section-container2:    rgb(235, 235, 235);
+    --LT-snippet-bg-gray:              rgb(50, 50, 50);
+    --LT-snippet-box-shadow:           rgba(37, 38, 54, 0.716);
+    --LT-code-box-shadow:              rgba(37, 38, 54, 0.716);
+
+    /* SHARED */
+    --code-webkit-scrlbr-border:       rgb(48, 48, 55);
+    --code-wbkt-scrlbr-bg:             rgb(220, 220, 220);
+
+    /* DARK THEME */
+    --DK-header-gray:                  rgb(220, 220, 220);
+    --DK-header-drop-shadow:           rgba(100, 100, 100, 0.75);
+    --DK-credit-note-gray:             rgb(150, 150, 150);
+    --DK-link-color:                   rgb(0, 183, 82);
+    --DK-intro-border-gray:            rgb(80, 80, 80);
+    --DK-main-text-color-gray:         rgb(200, 200, 200);
+    --DK-note-color-gray:              rgb(150, 150, 150);
+    --DK-review-section-container1:    rgb(30, 30, 30);
+    --DK-review-section-container2:    rgb(15, 15, 15);
+    --DK-snippet-color:                rgb(40, 40, 40);
+    --DK-snippet-bg:                   rgb(240, 240, 240);
+    --DK-snippet-box-shadow:           rgba(190, 190, 190, 0.716);
+    --DK-code-box-shadow:              rgba(15, 15, 23, 0.716);
 }
 
 * {
@@ -23,9 +50,9 @@ h1 {
     font-size: 35px;
     text-align: center;
     letter-spacing: 1.5px;
-    color: var(--dark-gray);
+    color: var(--LT-header-gray);
     margin-top: 30px;
-    filter: drop-shadow(0 3px 2px rgba(119, 119, 119, 0.716));
+    filter: drop-shadow(0 3px 2px var(--LT-header-drop-shadow));
 }
 
 .fa-circle-notch {
@@ -33,12 +60,12 @@ h1 {
     animation: updown 1.5s linear infinite;
 }
     .yellow {
-        color: var(--yellow);
+        color: rgb(255, 215, 0);
         filter: drop-shadow(0 3px 2px rgba(150, 133, 40, 0.716));
     }
     .blue {
         margin: 0 1px;
-        color: var(--blue);
+        color: rgb(0, 165, 255);
         animation-delay: 1s;
         filter: drop-shadow(0 3px 2px rgba(46, 105, 140, 0.716));
     }
@@ -71,7 +98,7 @@ canvas {
     width: 80%;
     margin-bottom: 10px;
     font-size: 12px;
-    color: #444;
+    color: var(--LT-credit-note-gray);
 }
 
 .credit-highlight {
@@ -79,17 +106,17 @@ canvas {
     margin-left: 10px;
 }
 
-a {text-decoration: none;}
+a {text-decoration: none; color: var(--LT-link-color);}
 
 .introduction {
-    border: 2px dashed rgb(210, 210, 210);
+    border: 2px dashed var(--LT-intro-border-gray);
     width: 80%;
     margin: 30px 0 15px 0;
     padding: 10px 10px;
 }
 
 .note {
-    color: #444;
+    color: var(--LT-credit-note-gray);
     font-size: 14px;
     margin: 20px 0 15px 0;
 }
@@ -105,7 +132,7 @@ a {text-decoration: none;}
     width: 49%;
     padding: 20px 15px;
     border-radius: 2px;
-    background: linear-gradient(rgb(250, 250, 250), rgb(235, 235, 235));
+    background: linear-gradient(var(--LT-review-section-container1), var(--LT-review-section-container2));
 }
 
 #js-container {
@@ -113,7 +140,7 @@ a {text-decoration: none;}
     margin: 0 0 80px 0;
     padding: 20px 15px 5px 15px;
     border-radius: 2px;
-    background: linear-gradient(rgb(250, 250, 250),rgb(235, 235, 235));
+    background: linear-gradient(var(--LT-review-section-container1),var(--LT-review-section-container2));
 }
 
 .subsection {
@@ -140,19 +167,17 @@ a {text-decoration: none;}
     color: white;
     padding: 2px 6px;
     border-radius: 2px;
-    background-color: var(--dark-gray);
-    box-shadow: 0 2px 5px rgba(37, 38, 54, 0.716) !important;
+    background-color: var(--LT-snippet-bg-gray);
+    box-shadow: 0 2px 5px var(--LT-snippet-box-shadow) !important;
 }
 
 pre {margin: 50px 0 30px 0;}
 
 code {
     font-family: 'Menlo', Arial, Helvetica !important;
-    color: white;
     font-size: 14px;
     border-radius: 3px;
-    background-color: var(--dark-gray);
-    box-shadow: 0 5px 10px rgba(37, 38, 54, 0.716);
+    box-shadow: 0 5px 10px var(--LT-code-box-shadow);
     overflow-y: hidden;
 }
 
@@ -161,7 +186,7 @@ code::-webkit-scrollbar {
     border-radius: 10px;
 }
 code::-webkit-scrollbar-thumb {
-    border: 4px solid rgb(48, 48, 55);
+    border: 4px solid var(--LT-code-webkit-scrlbr-border);
     border-radius: 10px;
-    background: rgb(220, 220, 220);
+    background: var(--LT-code-wbkt-scrlbr-bg);
 }
