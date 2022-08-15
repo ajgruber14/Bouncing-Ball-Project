@@ -61,3 +61,43 @@ function loop() {
 }
 
 loop();
+
+const toggleButton = document.getElementsByClassName('toggle-button')[0];
+const navbarLinks = document.getElementsByClassName('navbar-links')[0];
+
+toggleButton.addEventListener('click', () => {
+    navbarLinks.classList.toggle('active');
+})
+
+const body = document.querySelector('body');
+const toggle = document.getElementById('toggle');
+toggle.onclick = function(){
+    toggle.classList.toggle('active')
+    body.classList.toggle('active');
+}
+
+
+
+let scrollpos = window.scrollY;
+let header = document.querySelector('header');;
+
+function removeOpacity() {
+    header.style.opacity = "0";
+    header.style.pointerEvents = "none";
+}
+function addOpacity() {
+    header.style.opacity = "1";
+    header.style.pointerEvents = "all";
+}
+
+window.addEventListener('scroll', function(){ 
+    scrollpos = window.scrollY;
+
+    if(scrollpos > 50){
+        removeOpacity();
+    }
+    else {
+        addOpacity();
+    }
+    console.log(scrollpos);
+});

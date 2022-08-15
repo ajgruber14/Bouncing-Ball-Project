@@ -4,14 +4,34 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://kit.fontawesome.com/cc9e69ed66.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/atom-one-dark.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/highlight.min.js"></script>
     <script>hljs.highlightAll();</script>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="main.js" defer></script>
     <title>Bouncing Ball Project</title>
 </head>
 <body>
+    <header>
+        <nav class="navbar">
+            <h1 class="brand-title">Ajgruber</h1>
+            <a href="#" class="toggle-button">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </a>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Projects</a></li>
+                    <li><a href="#">About Me</a></li>
+                    <div id="toggle"><i class="indicator"></i></div>
+                </ul>
+            </div>
+        </nav>
+    </header>
     <h1>B<i class="fa-solid fa-circle-notch yellow"></i>uncing Ball Pr<i class="fa-solid fa-circle-notch blue"></i>ject</h1>
     <canvas></canvas>
     <p class="credit">Adaptation by <strong>ajgruber14</strong> <u class="credit-highlight">Check out more of my breakdown projects on GitHub</u> <a href="https://www.github.com/ajgruber14" target="_blank" rel="noreferrer noopener">here</a></p>
@@ -163,6 +183,5 @@ loop();
         </code></pre>
         <p class="summary">loop() is the final piece to the project. It initiates the entire animation upon loading!</p>
     </section>
-    <script src="main.js" defer></script>
 </body>
 </html>
