@@ -76,7 +76,7 @@ header {
 
 .logo {
     font-size: 1.5rem;
-    margin: 1.5rem 0 1.5rem 1rem;
+    margin: 1rem 0 1rem 1rem;
     color: var(--LT-header-gray);
     filter: drop-shadow(0 3px 2px var(--LT-header-drop-shadow));
     transition: all 250ms ease-in-out;
@@ -112,7 +112,7 @@ header {
 
 .menu-toggle {
     position: absolute;
-    top: 1.55rem;
+    top: 1.25rem;
     right: 1rem;
     display: none;
     flex-direction: column;
