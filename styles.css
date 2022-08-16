@@ -225,11 +225,10 @@ header {
 
 /* PAGE TITLE */
 .title {
-    font-size: 35px;
+    font-size: 26px;
     text-align: center;
     letter-spacing: 1.5px;
     color: var(--LT-header-gray);
-    margin-top: 30px;
     filter: drop-shadow(0 3px 2px var(--LT-header-drop-shadow));
     transition: all 250ms ease-in-out;
 }
@@ -239,7 +238,7 @@ header {
 }
 
 .fa-circle-notch {
-    font-size: large;
+    font-size: medium;
     animation: updown 1.5s linear infinite;
 }
     .yellow {
