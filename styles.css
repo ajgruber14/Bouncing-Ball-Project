@@ -17,6 +17,7 @@
     --link-color:                      rgb(0, 183, 82);
 
     /* DARK THEME */
+    --DK-body-background:              #1f1f1f;
     --DK-header-gray:                  rgb(220, 220, 220);
     --DK-header-drop-shadow:           rgba(100, 100, 100, 0.75);
     --DK-credit-note-gray:             rgb(150, 150, 150);
@@ -48,7 +49,7 @@ body {
     margin-top: 80px;
     transition: background 250ms ease-in-out;
 }
-body.dark {background: #1f1f1f;}
+body.dark {background: var(--DK-body-background);}
 
 
 
